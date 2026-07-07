@@ -295,6 +295,13 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchReleases();
 });
 
+// Expose functions needed by inline HTML onclick handlers
+// (type="module" scopes functions to the module, not window)
+window.focusSearch = focusSearch;
+window.closeSearch = closeSearch;
+window.closeSidebar = closeSidebar;
+window.toggleFaq = toggleFaq;
+
 // ── TOC SMOOTH SCROLL ─────────────────────────────────────────────────────
 document.querySelectorAll('.toc a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
