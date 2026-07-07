@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Features — watchAny Wiki</title>
+<meta name="description" content="Full feature breakdown of watchAny 2.0 — media playback, anime, manga, torrents, streams, and more."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="wiki.css"/>
+</head>
+<body>
+<header class="topbar">
+  <a class="topbar-left" href="/"><img class="topbar-logo" src="logo_transparent.png" alt="WatchAny"/><span class="topbar-brand">Watch<span>Any</span></span></a>
+  <div class="topbar-sep"></div>
+  <span class="topbar-wiki">Wiki</span>
+  <div class="topbar-search" onclick="focusSearch()"><span>🔍</span> Search docs…<span class="search-key">⌘K</span></div>
+  <div class="topbar-right"><a class="back-link" href="https://watchany.vercel.app" target="_blank">← watchany.vercel.app</a></div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+</header>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Getting Started</div>
+      <a class="sidebar-link" href="/"><span class="sidebar-link-icon">🏠</span> Introduction</a>
+      <a class="sidebar-link" href="/installation"><span class="sidebar-link-icon">⬇️</span> Installation</a>
+      <a class="sidebar-link active" href="/features"><span class="sidebar-link-icon">✨</span> Features</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Usage</div>
+      <a class="sidebar-link" href="/sources"><span class="sidebar-link-icon">📡</span> Media Sources</a>
+      <a class="sidebar-link" href="/faq"><span class="sidebar-link-icon">❓</span> FAQ</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Project</div>
+      <a class="sidebar-link" href="/changelog"><span class="sidebar-link-icon">📋</span> Changelog <span class="sidebar-badge">New</span></a>
+      <a class="sidebar-link" href="https://github.com/Fluffy-The-Penguin/watchAny-2.0" target="_blank"><span class="sidebar-link-icon">⭐</span> GitHub</a>
+      <a class="sidebar-link" href="https://github.com/Fluffy-The-Penguin/watchAny-2.0/releases" target="_blank"><span class="sidebar-link-icon">📦</span> Releases</a>
+    </div>
+    <div class="sidebar-ver">v2.0.34 · latest</div>
+  </aside>
+  <main class="main">
+    <div class="page-label">Getting Started</div>
+    <h1 class="page-title">Features</h1>
+    <p class="page-desc">watchAny is built around one idea: play anything, track everything. Here's what it does.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="fc-icon">🎬</div>
+        <div class="fc-title">Hardware-Accelerated Player</div>
+        <div class="fc-desc">Powered by libmpv. Handles 4K, HDR, Dolby Vision, HEVC 10-bit, AV1, and virtually any codec without buffering.</div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">📺</div>
+        <div class="fc-title">Anime Dashboard</div>
+        <div class="fc-desc">Browse Trending, Top Rated, Seasonal, and Continue Watching rails. Pulls live data from AniList API.</div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">🎥</div>
+        <div class="fc-title">Movies & Series</div>
+        <div class="fc-desc">Full TMDB integration. Discover new releases, popular titles, and track your watch history.</div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">📖</div>
+        <div class="fc-title">Manga Reader</div>
+        <div class="fc-desc">Browse and read manga with chapter tracking, bookmarks, and AniList progress sync built in.</div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">🌊</div>
+        <div class="fc-title">Torrent Playback</div>
+        <div class="fc-desc">Built-in TorrServer streams magnet links directly. Start watching while the torrent downloads — no client needed.</div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">📡</div>
+        <div class="fc-title">HLS & DASH Streams</div>
+        <div class="fc-desc">Paste any m3u8 or mpd URL and start playing instantly. Works with most IPTV and streaming sources.</div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">🔗</div>
+        <div class="fc-title">AniList Sync</div>
+        <div class="fc-desc">Connect your AniList account to sync your library, track episode progress, and update scores automatically.</div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">🔌</div>
+        <div class="fc-title">HStream Extensions</div>
+        <div class="fc-desc">Load Keiyoushi-compatible anime extension sources to stream anime from aggregated providers.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-section">
+      <h2 class="section-title">Player Capabilities</h2>
+      <div class="section-body">
+        <ul>
+          <li><strong>Subtitle support</strong> — SRT, ASS/SSA, embedded subtitles, external files</li>
+          <li><strong>Audio tracks</strong> — switch between dubbed/subbed tracks mid-playback</li>
+          <li><strong>Chapter navigation</strong> — skip to any chapter with a single click</li>
+          <li><strong>Playback speed</strong> — 0.25× to 4× without pitch distortion</li>
+          <li><strong>Resume playback</strong> — automatically resumes from where you left off</li>
+          <li><strong>Episode switching</strong> — next/prev episode controls in the player</li>
+          <li><strong>Download manager</strong> — queue downloads from the player directly</li>
+          <li><strong>Screen lock</strong> — keep display awake during playback (Android)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-section">
+      <h2 class="section-title">Anime Dashboard Details</h2>
+      <div class="section-body">
+        <p>The anime home page surfaces content from AniList in horizontal railway tracks:</p>
+        <ul>
+          <li><strong>Continue Watching</strong> — episodes you paused, with progress bars and hover-to-delete</li>
+          <li><strong>Trending Now</strong> — live trending anime from AniList with infinite scroll</li>
+          <li><strong>Top Rated</strong> — highest scoring series of all time</li>
+          <li><strong>Current Season</strong> — what's airing right now</li>
+          <li><strong>Popular Movies</strong> — top-rated anime films</li>
+          <li><strong>Upcoming</strong> — not yet aired but announced titles</li>
+        </ul>
+        <p>Each card shows the poster, score badge, and progress indicator. Click to open the full detail page with episode list, synopsis, genres, studio, and stream/torrent options.</p>
+        <div class="alert alert-tip">
+          <span class="alert-icon">💡</span>
+          <span>Hover over any card in the <strong>Continue Watching</strong> rail to reveal a delete button — click it to remove the item from your history.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <a class="page-nav-prev" href="/installation">← Installation</a>
+      <a class="page-nav-next" href="/sources">Media Sources →</a>
+    </div>
+  </main>
+</div>
+<footer class="wiki-footer">
+  <span>© 2025 watchAny · <a href="https://github.com/Fluffy-The-Penguin/watchAny-2.0" target="_blank">Open Source on GitHub</a></span>
+  <span>Built with ♥ by Fluffy-The-Penguin</span>
+  <a href="https://watchany.vercel.app" target="_blank">← Back to main site</a>
+</footer>
+<script type="module" src="wiki.js"></script>
+</body>
+</html>

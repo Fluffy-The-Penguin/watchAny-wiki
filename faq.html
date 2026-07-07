@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FAQ — watchAny Wiki</title>
+<meta name="description" content="Frequently asked questions about watchAny 2.0."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="wiki.css"/>
+</head>
+<body>
+<header class="topbar">
+  <a class="topbar-left" href="/"><img class="topbar-logo" src="logo_transparent.png" alt="WatchAny"/><span class="topbar-brand">Watch<span>Any</span></span></a>
+  <div class="topbar-sep"></div>
+  <span class="topbar-wiki">Wiki</span>
+  <div class="topbar-search" onclick="focusSearch()"><span>🔍</span> Search docs…<span class="search-key">⌘K</span></div>
+  <div class="topbar-right"><a class="back-link" href="https://watchany.vercel.app" target="_blank">← watchany.vercel.app</a></div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+</header>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Getting Started</div>
+      <a class="sidebar-link" href="/"><span class="sidebar-link-icon">🏠</span> Introduction</a>
+      <a class="sidebar-link" href="/installation"><span class="sidebar-link-icon">⬇️</span> Installation</a>
+      <a class="sidebar-link" href="/features"><span class="sidebar-link-icon">✨</span> Features</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Usage</div>
+      <a class="sidebar-link" href="/sources"><span class="sidebar-link-icon">📡</span> Media Sources</a>
+      <a class="sidebar-link active" href="/faq"><span class="sidebar-link-icon">❓</span> FAQ</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Project</div>
+      <a class="sidebar-link" href="/changelog"><span class="sidebar-link-icon">📋</span> Changelog <span class="sidebar-badge">New</span></a>
+      <a class="sidebar-link" href="https://github.com/Fluffy-The-Penguin/watchAny-2.0" target="_blank"><span class="sidebar-link-icon">⭐</span> GitHub</a>
+      <a class="sidebar-link" href="https://github.com/Fluffy-The-Penguin/watchAny-2.0/releases" target="_blank"><span class="sidebar-link-icon">📦</span> Releases</a>
+    </div>
+    <div class="sidebar-ver">v2.0.34 · latest</div>
+  </aside>
+  <main class="main">
+    <div class="page-label">Usage</div>
+    <h1 class="page-title">FAQ</h1>
+    <p class="page-desc">Common questions answered. If you don't find your answer here, open an issue on GitHub.</p>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Is watchAny free?</span>
+          <span class="faq-arrow">↓</span>
+        </div>
+        <div class="faq-a">
+          Yes — completely free and open source. No ads, no subscriptions, no premium tier. The source code is on <a href="https://github.com/Fluffy-The-Penguin/watchAny-2.0" target="_blank">GitHub</a>.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Windows says the installer is unsafe. Is it?</span>
+          <span class="faq-arrow">↓</span>
+        </div>
+        <div class="faq-a">
+          No. The warning appears because the app is not code-signed (signing certificates cost hundreds of dollars per year). Click <strong>"More info" → "Run anyway"</strong> to proceed. You can verify the binary yourself — the full source code is public.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Do I need an AniList account?</span>
+          <span class="faq-arrow">↓</span>
+        </div>
+        <div class="faq-a">
+          No. You can browse anime, play torrents, and use all features without an account. An AniList account is only needed if you want to sync your library, watch progress, and ratings to AniList.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Which Android APK should I download?</span>
+          <span class="faq-arrow">↓</span>
+        </div>
+        <div class="faq-a">
+          For most modern phones (2017 and newer), download <code class="code-inline">app-arm64-v8a-release.apk</code>. For older devices, use <code class="code-inline">app-armeabi-v7a-release.apk</code>. The x86_64 APK is only for emulators.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Video is choppy / not playing smoothly. What do I do?</span>
+          <span class="faq-arrow">↓</span>
+        </div>
+        <div class="faq-a">
+          <ul>
+            <li>Ensure your GPU drivers are up to date</li>
+            <li>For 4K content, make sure your system meets the requirements</li>
+            <li>Try a different stream quality or source</li>
+            <li>For torrents, wait for more data to buffer before seeking</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How do I remove an item from Continue Watching?</span>
+          <span class="faq-arrow">↓</span>
+        </div>
+        <div class="faq-a">
+          Hover over any card in the <strong>Continue Watching</strong> rail and click the <strong>✕ button</strong> that appears in the top-left corner. This immediately removes it from your history.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Why does the app say "Update Available" even after updating?</span>
+          <span class="faq-arrow">↓</span>
+        </div>
+        <div class="faq-a">
+          This was a bug fixed in <strong>v2.0.34</strong>. Update to the latest version and the prompt will no longer appear incorrectly.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Does watchAny work on macOS or Linux?</span>
+          <span class="faq-arrow">↓</span>
+        </div>
+        <div class="faq-a">
+          Not officially. watchAny is built with Flutter and could theoretically run on macOS and Linux, but no official builds are provided. You're welcome to compile from source and open a PR if you get it working.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How do I report a bug or request a feature?</span>
+          <span class="faq-arrow">↓</span>
+        </div>
+        <div class="faq-a">
+          Open an issue on the <a href="https://github.com/Fluffy-The-Penguin/watchAny-2.0/issues" target="_blank">GitHub Issues page</a>. Include your OS, app version, and steps to reproduce.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+    <div class="alert alert-info" style="margin-top:0">
+      <span class="alert-icon">💬</span>
+      <span>Still stuck? <a href="https://github.com/Fluffy-The-Penguin/watchAny-2.0/issues" target="_blank">Open a GitHub issue</a> and we'll help you out.</span>
+    </div>
+
+    <div class="page-nav">
+      <a class="page-nav-prev" href="/sources">← Media Sources</a>
+      <a class="page-nav-next" href="/changelog">Changelog →</a>
+    </div>
+  </main>
+</div>
+<footer class="wiki-footer">
+  <span>© 2025 watchAny · <a href="https://github.com/Fluffy-The-Penguin/watchAny-2.0" target="_blank">Open Source on GitHub</a></span>
+  <span>Built with ♥ by Fluffy-The-Penguin</span>
+  <a href="https://watchany.vercel.app" target="_blank">← Back to main site</a>
+</footer>
+<script type="module" src="wiki.js"></script>
+</body>
+</html>

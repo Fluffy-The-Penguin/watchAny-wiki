@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Media Sources — watchAny Wiki</title>
+<meta name="description" content="How to play URLs, torrents, HLS/DASH streams, and local files in watchAny 2.0."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="wiki.css"/>
+</head>
+<body>
+<header class="topbar">
+  <a class="topbar-left" href="/"><img class="topbar-logo" src="logo_transparent.png" alt="WatchAny"/><span class="topbar-brand">Watch<span>Any</span></span></a>
+  <div class="topbar-sep"></div>
+  <span class="topbar-wiki">Wiki</span>
+  <div class="topbar-search" onclick="focusSearch()"><span>🔍</span> Search docs…<span class="search-key">⌘K</span></div>
+  <div class="topbar-right"><a class="back-link" href="https://watchany.vercel.app" target="_blank">← watchany.vercel.app</a></div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+</header>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Getting Started</div>
+      <a class="sidebar-link" href="/"><span class="sidebar-link-icon">🏠</span> Introduction</a>
+      <a class="sidebar-link" href="/installation"><span class="sidebar-link-icon">⬇️</span> Installation</a>
+      <a class="sidebar-link" href="/features"><span class="sidebar-link-icon">✨</span> Features</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Usage</div>
+      <a class="sidebar-link active" href="/sources"><span class="sidebar-link-icon">📡</span> Media Sources</a>
+      <a class="sidebar-link" href="/faq"><span class="sidebar-link-icon">❓</span> FAQ</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Project</div>
+      <a class="sidebar-link" href="/changelog"><span class="sidebar-link-icon">📋</span> Changelog <span class="sidebar-badge">New</span></a>
+      <a class="sidebar-link" href="https://github.com/Fluffy-The-Penguin/watchAny-2.0" target="_blank"><span class="sidebar-link-icon">⭐</span> GitHub</a>
+      <a class="sidebar-link" href="https://github.com/Fluffy-The-Penguin/watchAny-2.0/releases" target="_blank"><span class="sidebar-link-icon">📦</span> Releases</a>
+    </div>
+    <div class="sidebar-ver">v2.0.34 · latest</div>
+  </aside>
+  <main class="main">
+    <div class="page-label">Usage</div>
+    <h1 class="page-title">Media Sources</h1>
+    <p class="page-desc">watchAny accepts virtually any media input — paste it in the search bar and hit play. Here's what's supported.</p>
+
+    <div class="toc">
+      <div class="toc-title">On this page</div>
+      <a href="#direct-url">Direct URLs</a>
+      <a href="#torrents">Torrents</a>
+      <a href="#hls">HLS / DASH Streams</a>
+      <a href="#local">Local Files</a>
+      <a href="#hstream">HStream Sources</a>
+    </div>
+
+    <div class="content-section" id="direct-url">
+      <h2 class="section-title">🔗 Direct URLs</h2>
+      <div class="section-body">
+        <p>Paste any direct video URL into the search bar. Supported formats include:</p>
+        <ul>
+          <li>MP4, MKV, AVI, MOV, WEBM, FLV (direct file links)</li>
+          <li>Any URL that resolves to a playable video stream</li>
+        </ul>
+        <div class="code-block">https://example.com/video.mp4
+https://cdn.site.com/episode-01.mkv</div>
+        <div class="alert alert-info">
+          <span class="alert-icon">ℹ️</span>
+          <span>Direct URL playback uses libmpv internally, which supports a huge range of protocols — HTTP, HTTPS, RTMP, and more.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-section" id="torrents">
+      <h2 class="section-title">🌊 Torrents (Magnet Links)</h2>
+      <div class="section-body">
+        <p>Paste a magnet link to stream directly via the built-in <strong>TorrServer</strong> engine. No external torrent client needed — watchAny streams while downloading.</p>
+        <div class="code-block">magnet:?xt=urn:btih:HASH&dn=My+Movie+Name&tr=udp://...</div>
+        <p>TorrServer is launched automatically in the background when you paste a magnet link. The selected file begins streaming as soon as enough data is buffered.</p>
+        <ul>
+          <li>Multi-file torrents show a file picker to choose which file to play</li>
+          <li>Downloaded pieces are cached locally for fast re-watching</li>
+          <li>The Downloads page tracks all active and completed torrents</li>
+        </ul>
+        <div class="alert alert-warn">
+          <span class="alert-icon">⚠️</span>
+          <span>Only use torrent playback for content you own or that is freely and legally distributed. Respect your country's copyright laws.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-section" id="hls">
+      <h2 class="section-title">📡 HLS & DASH Streams</h2>
+      <div class="section-body">
+        <p>Paste any HLS or DASH manifest URL to start live or VOD stream playback:</p>
+        <div class="code-block">https://example.com/stream/index.m3u8       ← HLS
+https://example.com/stream/manifest.mpd    ← DASH</div>
+        <p>These are used by IPTV providers, live TV services, and many anime streaming sources. Quality switching (adaptive bitrate) is handled automatically.</p>
+        <h4>IPTV M3U Playlists</h4>
+        <p>watchAny can load <code class="code-inline">.m3u</code> playlist files. Each channel in the playlist becomes a playable item.</p>
+        <div class="code-block">https://example.com/channels.m3u</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-section" id="local">
+      <h2 class="section-title">📁 Local Files</h2>
+      <div class="section-body">
+        <p>Open any local video file using the file picker (or drag &amp; drop on Windows). Supported formats include everything libmpv handles:</p>
+        <ul>
+          <li>MKV, MP4, AVI, MOV, WEBM, FLV, TS, M2TS</li>
+          <li>Any container format with H.264, H.265, AV1, VP9, etc.</li>
+          <li>Files with embedded subtitles and multiple audio tracks</li>
+        </ul>
+        <p>External subtitle files (<code class="code-inline">.srt</code>, <code class="code-inline">.ass</code>) placed in the same folder as the video are automatically detected.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-section" id="hstream">
+      <h2 class="section-title">🔌 HStream Extension Sources</h2>
+      <div class="section-body">
+        <p>HStream lets you load Keiyoushi-compatible anime extension sources — JavaScript-based plugins that scrape anime streaming sites and return playable stream URLs directly in watchAny.</p>
+        <h4>Setting up HStream</h4>
+        <ol class="steps-list">
+          <li>Open <strong>Settings → HStream</strong> in watchAny</li>
+          <li>Add a compatible source URL (Keiyoushi extension repo)</li>
+          <li>The source appears in the anime detail page under "Stream" tab</li>
+          <li>Select a source and episode to start streaming</li>
+        </ol>
+        <div class="alert alert-tip">
+          <span class="alert-icon">💡</span>
+          <span>HStream runs extensions in an isolated JavaScript runtime — sources cannot access your system or personal data outside of watchAny.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <a class="page-nav-prev" href="/features">← Features</a>
+      <a class="page-nav-next" href="/faq">FAQ →</a>
+    </div>
+  </main>
+</div>
+<footer class="wiki-footer">
+  <span>© 2025 watchAny · <a href="https://github.com/Fluffy-The-Penguin/watchAny-2.0" target="_blank">Open Source on GitHub</a></span>
+  <span>Built with ♥ by Fluffy-The-Penguin</span>
+  <a href="https://watchany.vercel.app" target="_blank">← Back to main site</a>
+</footer>
+<script type="module" src="wiki.js"></script>
+</body>
+</html>
