@@ -197,12 +197,19 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;-webk
   .toc{float:none;margin:0 0 1.5rem;width:100%;}
   .wiki-footer{padding:2rem 1.5rem;}
 }
-@media(max-width:600px){
+@media(max-width:600px) {
   .page-title{font-size:2rem;}
   .feature-grid{grid-template-columns:1fr;}
   .quick-grid{grid-template-columns:1fr 1fr;}
-  .topbar-search{display:none;}
+  .topbar-search{width:auto;background:none;border:none;padding:.35rem .5rem;}
+  .topbar-search span:nth-child(2),
+  .topbar-search .search-key{display:none;}
   .apk-row{flex-direction:column;align-items:flex-start;gap:.35rem;}
+}
+@media(max-width:480px){
+  .topbar-sep, .topbar-wiki { display:none; }
+  .topbar { padding:0 .75rem; gap:.5rem; }
+  .back-link { padding:.35rem .5rem; font-size:.7rem; }
 }
 @media(max-width:400px){
   .quick-grid{grid-template-columns:1fr;}
